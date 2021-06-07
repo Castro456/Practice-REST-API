@@ -40,4 +40,13 @@ class Student{
     $sql->execute();
     return $sql->get_result(); 
   }
+
+  public function single_data(){
+    $query= "SELECT * FROM $this->table_name WHERE id = ?";
+    $sql= $this->conn->prepare($query);
+    $sql->bind_param("i", $this->id);
+    $sql->execute();
+    $data = $sql->get_result();
+    return $data->fetch_assoc();
+  }
 }
