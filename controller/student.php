@@ -5,6 +5,7 @@ class Student{
   public $name;
   public $email;
   public $mobile;
+  public $id; //while using htmlspecialchars need to declare
 
   private $conn;
   private $table_name;
@@ -48,5 +49,19 @@ class Student{
     $sql->execute();
     $data = $sql->get_result();
     return $data->fetch_assoc();
+  }
+
+  public function update_stu(){
+    $query = "UPDATE $this->table_name SET name = ?, email = ?, mobile = ? WHERE id = ? ";
+    $query_obj = $this->conn->prepare($query);
+    htmlspecialchars(strip_tags($this->name));
+    htmlspecialchars(strip_tags($this->email));
+    htmlspecialchars(strip_tags($this->mobile));
+    htmlspecialchars(strip_tags($this->id));
+    $query_obj->bind_param("sssi", $this->name, $this->email, $this->mobile, $this->id);
+    if ($query_obj->execute()) {
+      return true;
+    }
+    return false;
   }
 }
