@@ -16,7 +16,7 @@ $student=new Student($connection); //$connection is the parameter passed to cons
 if ($_SERVER['REQUEST_METHOD']==="POST") {
   $data=json_decode(file_get_contents("php://input"));
   // way to get all the data of the body parameter
-  if (( !empty($data->name)) && ( !empty($data->name)) && ( !empty($data->name))) {
+  if (( !empty($data->name)) && ( !empty($data->email)) && ( !empty($data->mobile))) {
     // print_r($data);
     $student->name=$data->name;
     $student->email=$data->email;
