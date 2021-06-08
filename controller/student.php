@@ -64,4 +64,15 @@ class Student{
     }
     return false;
   }
+
+  public function delete_stu(){
+    $query = "DELETE FROM $this->table_name WHERE id = ?";
+    $query_obj = $this->conn->prepare($query);
+    htmlspecialchars(strip_tags($this->id));
+    $query_obj->bind_param("i",$this->id);
+    if ($query_obj->execute()) {
+      return true;
+    }
+    return false;
+  }
 }
