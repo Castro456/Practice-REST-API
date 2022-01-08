@@ -13,6 +13,7 @@ class Student{
   public function __construct($db){  //db is the connection offset
     $this->conn = $db;
     $this->table_name = "students";
+    $this->table_name2 = "admin";
   }
 
   public function create_data(){
@@ -74,5 +75,21 @@ class Student{
       return true;
     }
     return false;
+  }
+
+  public function login_admin()
+  {
+    $query = "SELECT * FROM $this->table_name2 WHERE email = ? AND password = ?";
+    $result = $this->conn->prepare($query);
+    $result->bind_param("ss",$this->email, $this->password);
+    if($result->execute())
+    {
+      $data = $result->get_result();
+      return $data->fetch_assoc();
+    }
+    else {
+      return array();
+    }
+
   }
 }

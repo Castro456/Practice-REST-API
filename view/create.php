@@ -15,7 +15,8 @@ $student=new Student($connection); //$connection is the parameter passed to cons
 // $student object is assigned to access the properties of class Student like declared variables public name,email,mobile
 if ($_SERVER['REQUEST_METHOD']==="POST") {
   $data=json_decode(file_get_contents("php://input"));
-  // way to get all the data of the body parameter
+  // php is the function
+  // input is a way to get all the data of the body parameter
   if (( !empty($data->name)) && ( !empty($data->email)) && ( !empty($data->mobile))) {
     // print_r($data);
     $student->name=$data->name;
