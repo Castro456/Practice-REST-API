@@ -1,6 +1,6 @@
 <?php 
 class Database {
-  private $hostname="localhost";
+  private $hostname="localhost:8111";
   private $username="root";
   private $password="giveaccess";
   private $dbname="rest_php_api";
